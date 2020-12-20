@@ -29,7 +29,7 @@ public class Main {
 
     public static void main(String[] args) {
         String[] columnMapping = {"id", "firstName", "lastName", "country", "age"};
-        String fileCSVName = "data.csv";
+        String fileCSVName = "dataCorrect.csv";
         String fileJSONName = "data.json";
         String fileXMLName = "data.xml";
 
@@ -51,7 +51,7 @@ public class Main {
         listJSON.forEach(System.out::println);
     }
 
-    private static List<Employee> parseCSV(String[] columnMapping, String fileName) {
+    public static List<Employee> parseCSV(String[] columnMapping, String fileName) {
         List<Employee> employees = new ArrayList<>();
         ColumnPositionMappingStrategy<Employee> strategy = new ColumnPositionMappingStrategy<>();
         strategy.setType(Employee.class);
@@ -69,7 +69,7 @@ public class Main {
         return employees;
     }
 
-    private static List<Employee> parseXML(String fileName) {
+    public static List<Employee> parseXML(String fileName) {
         List<Employee> employees = new ArrayList<>();
 
         try {
@@ -116,14 +116,14 @@ public class Main {
         return employees;
     }
 
-    private static String listToJson(List<Employee> employees) {
+    public static String listToJson(List<Employee> employees) {
         Type listType = new TypeToken<List<Employee>>() {}.getType();
         GsonBuilder builder = new GsonBuilder();
         Gson gson = builder.create();
         return gson.toJson(employees, listType);
     }
 
-    private static List<Employee> jsonToList(String json) {
+    public static List<Employee> jsonToList(String json) {
         List<Employee> employees = new ArrayList<>();
         GsonBuilder builder = new GsonBuilder();
         Gson gson = builder.create();
@@ -143,7 +143,7 @@ public class Main {
         return employees;
     }
 
-    private static void writeString(String fileName, String data) {
+    public static void writeString(String fileName, String data) {
         try (FileWriter writer = new FileWriter(fileName)) {
             writer.write(data);
             writer.flush();
@@ -152,7 +152,7 @@ public class Main {
         }
     }
 
-    private static String readString(String fileName) {
+    public static String readString(String fileName) {
         StringBuilder result = new StringBuilder();
 
         try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {

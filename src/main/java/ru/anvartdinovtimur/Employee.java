@@ -1,5 +1,7 @@
 package ru.anvartdinovtimur;
 
+import java.util.Objects;
+
 public class Employee {
 
     public long id;
@@ -28,6 +30,18 @@ public class Employee {
                 ", country='" + country + '\'' +
                 ", age='" + age + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Employee employee = (Employee) o;
+        return id == employee.id &&
+                age == employee.age &&
+                Objects.equals(firstName, employee.firstName) &&
+                Objects.equals(lastName, employee.lastName) &&
+                Objects.equals(country, employee.country);
     }
 
     public void setId(long id) {
